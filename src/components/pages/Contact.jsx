@@ -1,135 +1,143 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-materialize";
 
 function Contact() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
-    const [nameError, setNameError] = useState(false);
-    const [emailError, setEmailError] = useState(false);
-    const [messageError, setMessageError] = useState(false);
-    const [messageSent, setMessageSent] = useState(false);
+  // Define state variables to manage form data, errors, and message status
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [messageSent, setMessageSent] = useState(false);
 
-    const handleNameChange = (e) => {
-        setName(e.target.value);
-        setNameError(false);
-    };
-    
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-        setEmailError(false);
-    };
-    
-    const handleMessageChange = (e) => {
-        setMessage(e.target.value);
-        setMessageError(false);
-    };
-    
-    const validateEmail = (email) => {
-        return /\S+@\S+\.\S+/.test(email);
-    };
+  // Handle changes in form inputs
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    // Update the form data and reset errors for the specific field
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    setErrors({
+      ...errors,
+      [name]: false,
+    });
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        let valid = true;
+  // Validate the form inputs and return true if all are valid
+  const validateForm = () => {
+    const newErrors = {};
 
-        if (name.length <= 5) {
-            setNameError(true);
-            valid = false;
-        }
-        if (!validateEmail(email)) {
-            setEmailError(true);
-            valid = false;
-        }
-        if (message.length <150) {
-            setMessageError(true);
-            valid = false;
-        }
+    // Check the name length
+    if (formData.name.length <= 5) {
+      newErrors.name = true;
+    }
+    // Check the email format
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = true;
+    }
+    // Check the message length
+    if (formData.message.length < 150) {
+      newErrors.message = true;
+    }
 
-        if (valid) {
-            console.log(`Name: ${name}, Email: ${email}, Message: ${message}`);
-            setName("");
-            setEmail("");
-            setMessage("");
-            setMessageSent(true);
-        }
-    };
+    // Update errors state with new errors
+    setErrors(newErrors);
+    // Return true if there are no errors
+    return Object.keys(newErrors).length === 0;
+  };
 
-    return (
-        <section id="contact">
-            <Container>
-                <Row>
-                    <Col lg={8} className="mx-auto">
-                        <h2 className="contact-header"> Contact me</h2>
-                        {messageSent && (
-                            <div className="alert alert-success" role="alert">
-                                message sent!
-                            </div>
-                        )}
-                        <Form onSubmit={handleSubmit} noValidate>
-                            <Form.Group>
-                                <Form.Label htmlFor="name">Name:</Form.Label>
-                                <Form.Control
-                                  type="text"
-                                  className={nameError ? "is-invalid" : ""}
-                                  id="name"
-                                  name="name"
-                                  value={name}
-                                  onChange={handleNameChange}
-                                  required
-                                 />
-                                {nameError && (
-                                    <div className="invalid-input">
-                                        Name must be at least five characters long
-                                    </div>
-                                )}
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Label htmlFor="email">Email:</Form.Label>
-                                <Form.Control
-                                  type="email"
-                                  className={emailError ? "is-invalid" : ""}
-                                  id="email"
-                                  name="email"
-                                  value={email}
-                                  onChange={handleEmailChange}
-                                  required
-                                />
-                                {emailError && (
-                                    <div className="invalid-input">
-                                        Please enter a valid email address
-                                    </div>
-                                )}    
-                             
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Label htmlFor="message">Message</Form.Label>
-                                <Form.Control
-                                  as="textarea"
-                                  className={messageError ? "is-invalid": ""}
-                                  id="message"
-                                  rows="5"
-                                  name="user_message"
-                                  value={message}
-                                  onChange={handleMessageChange}
-                                />
-                                {messageError &&(
-                                    <div className="invalid-input">
-                                        Please provide your message must be atleast 150 character!
-                                    </div>
-                                )}
-                            </Form.Group>
-                            <Button type="submit" className="custom-send-message-button">
-                                Send Message
-                            </Button>
-                        </Form>
-                    </Col>
-                </Row>
-            </Container>
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      // If the form is valid, log the data, reset the form, and set messageSent to true
+      console.log(`Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message}`);
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+      setMessageSent(true);
+    }
+  };
 
-        </section>
-    );
-    
-    
+  return (
+    <section id="contact">
+      <Container>
+        <Row>
+          <Col lg={8} className="mx-auto">
+            <h2 className="contact-header">Contact me</h2>
+            {messageSent && (
+              <div className="alert alert-success" role="alert">
+                Message sent!
+              </div>
+            )}
+            {/* Form component for capturing user input */}
+            <Form onSubmit={handleSubmit} noValidate>
+              <Form.Group>
+                <Form.Label htmlFor="name">Name:</Form.Label>
+                {/* Input for name */}
+                <Form.Control
+                  type="text"
+                  className={errors.name ? "is-invalid" : ""}
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+                {errors.name && (
+                  <div className="invalid-input">
+                    Name must be at least five characters long
+                  </div>
+                )}
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="email">Email:</Form.Label>
+                {/* Input for email */}
+                <Form.Control
+                  type="email"
+                  className={errors.email ? "is-invalid" : ""}
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+                {errors.email && (
+                  <div className="invalid-input">
+                    Please enter a valid email address
+                  </div>
+                )}
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="message">Message:</Form.Label>
+                {/* Textarea for message */}
+                <Form.Control
+                  as="textarea"
+                  className={errors.message ? "is-invalid" : ""}
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                />
+                {errors.message && (
+                  <div className="invalid-input">
+                    Message must be at least 150 characters long
+                  </div>
+                )}
+              </Form.Group>
+              {/* Submit button */}
+              <Button type="submit">Send</Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    </section>
+  );
 }
+
 export default Contact;

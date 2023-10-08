@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Button } from "react-materialize";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import "../style/Resume.css";
 import PDF from "../Document/MeriamResume.pdf";
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"; // Import useEffect
-import M from 'materialize-css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import Project from "../Project";
 import CovidTracker from "../images/CovidTracker";
 import WeatherDashboard from '../WeatherDashboard';

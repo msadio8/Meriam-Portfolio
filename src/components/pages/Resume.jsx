@@ -1,5 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-materialize";
+import "../style/Resume.css";
+import PDF from "../Document/MeriamResume.pdf";
 
 // Resume component
 function Resume() {

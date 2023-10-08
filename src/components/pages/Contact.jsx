@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-materialize";
+import "../style/Contact.css";
 
 function Contact() {
   // Define state variables to manage form data, errors, and message status

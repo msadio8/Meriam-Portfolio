@@ -6,6 +6,8 @@ import WeatherDashboard from '../WeatherDashboard';
 import TechBlog from "../images/TechBlog";
 import NoteTaker from "../NoteTaker";
 import WorkDay from "../WorkDay"; // Import WorkDay image
+import "../style/Porfolio.css";
+
 
 function Portfolio() { 
     useEffect(() => { // Use useEffect for MaterializeCSS initialization

@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Card, Image } from "react-materialize";
-import "./style.css";
+import "../style/About.css";
 import avatar from "./your-avatar-image.jpg"; // Make sure to import your avatar image
 
 function AboutMe() {

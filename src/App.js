@@ -24,8 +24,11 @@ function App() {
             <Route path="/Meriam-Portfolio/" element={<About />} />
             
             <Route path="/Meriam-Portfolio/about" element={<About />} />
+
             <Route path="/Meriam-Portfolio/portfolio" element={<Portfolio />} />
+
             <Route path="/Meriam-Portfolio/contact" element={<Contact />} />
+            
             <Route path="/Meriam-Portfolio/resume" element={<Resume />} />
           </Routes>
         </div>

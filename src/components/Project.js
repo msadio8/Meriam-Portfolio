@@ -36,9 +36,9 @@
 // // Export Project
 // export default Project;
 
-// import React from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import "../style/Project.css";
+// import "../style/Project.css";
 
 function Project(props) {
   return (

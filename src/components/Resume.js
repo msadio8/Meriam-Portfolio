@@ -34,8 +34,7 @@ function Resume() {
                 <strong>Databases:</strong> MongoDB, MySQL, PostgreSQL
               </li>
               <li className="list-inline-item">
-                <strong>Tools/Platforms:</strong> Git, GitHub, Heroku, AWS,
-                Netlify
+                <strong>Tools/Platforms:</strong> Git, GitHub, Heroku
               </li>
             </ul>
           </Col>
@@ -45,8 +44,8 @@ function Resume() {
             <h3>Education</h3>
             <hr className="star-secondary" />
             <div className="resume-item">
-              <h4>Bachelor of Science in Computer Science</h4>
-              <h5>University of Toronto, 2020-2024</h5>
+              <h4>Full Stack Web Developer</h4>
+              <h5>The Universty Of Sydney</h5>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
                 cursus bibendum magna, vitae dapibus felis ultricies ut. Sed ac
@@ -61,8 +60,8 @@ function Resume() {
             <h3>Work Experience</h3>
             <hr className="star-secondary" />
             <div className="resume-item">
-              <h4>Full-Stack Developer, Elden Lord</h4>
-              <h5>The Lands Between, 2022-present</h5>
+              <h4>Commonwealth Bank</h4>
+              <h5>Transaction Banking Associate</h5>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
                 cursus bibendum magna, vitae dapibus felis ultricies ut. Sed ac
@@ -71,8 +70,8 @@ function Resume() {
               </p>
             </div>
             <div className="resume-item">
-              <h4>Web Developer Intern</h4>
-              <h5>DELL CND Inc., Summer 2022-2023</h5>
+              <h4>Customer Service Specialist</h4>
+              <h5>Commonwealth Bank </h5>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
                 cursus bibendum magna, vitae dapibus felis ultricies ut. Sed ac
